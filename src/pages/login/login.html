@@ -1,19 +1,65 @@
-<!--
-  Generated template for the LoginPage page.
+<!-- the LoginPage page. -->
+<ion-content class = "login-content" padding>
 
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
-<ion-header>
+  <ion-row class = "logo-row">
+    <ion-col></ion-col>
+    <!-- create a col in the middle?? -->
+    <ion-col width-67>
+      <img src = "/Users/LeoLe/Documents/Wallpapers/funny_wtf_cat_with_a_gun_riding_an_unicorn.jpg" />
+    </ion-col>
+    <ion-col></ion-col>
+    <!-- create a col in the middle?? -->
+  </ion-row>
 
-  <ion-navbar>
-    <ion-title>login</ion-title>
-  </ion-navbar>
+  <div class = "login-box">
 
-</ion-header>
+    <!-- Standard Login Form with buttons -->
+    <!-- #registerForm is used to disable the submit button until all fields are filled-->
+    <form (ngSubmit) = "login()" #registerForm = "ngForm">
 
+      <ion-row>
+        <ion-col>
+          <ion-list inset>
 
-<ion-content padding>
-  <button ion-button full color = "light"> Click Here</button>
+            <!-- Create new input fields for user information -->
+            <ion-item>
+              <ion-input 
+              type = "text" 
+              placholder = "Email" 
+              name = "email" 
+              [(ngModel)] = "register_user.email" 
+              required>
+              </ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-input 
+              type = "password" 
+              placholder = "Password" 
+              name = "password" 
+              [(ngModel)] = "register_user.password" 
+              required>
+              </ion-input>
+            </ion-item>
+
+          </ion-list>
+        </ion-col>
+      </ion-row>
+
+      <!-- Create 2 buttons for Login and Create new account-->
+      <ion-row>
+        <ion-col class = "signup-col">
+          <button 
+          ion-button class = "submit-btn"
+          full type = "submit"
+          [disabled] = "!registerForm.form.valid"> Login </button>
+          <button
+          ion-button class = "register-btn"
+          block clear (click) = "createAccount()"> Create New Account </button>
+        </ion-col>
+      </ion-row>
+
+    </form>
+  </div>
 
 </ion-content>
