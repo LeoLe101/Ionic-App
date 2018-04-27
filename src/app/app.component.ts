@@ -2,14 +2,12 @@ import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { LoginPage } from '../pages/login/login';
 
-import { HomePage } from '../pages/home/home';
-import { ListPage } from '../pages/list/list';
-
-interface IPage {
-  title: string;
-  component: any;
-}
+// interface IPage {
+//   title: string;
+//   component: any;
+// }
 
 @Component({
   templateUrl: 'app.html'
@@ -17,18 +15,26 @@ interface IPage {
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = HomePage;
+  rootPage: any = 'LoginPage';
 
-  pages: Array<IPage>;
+  // pages: Array<IPage>;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
-    this.initializeApp();
+  constructor(public platform: Platform, public statusBar: StatusBar, 
+    public splashScreen: SplashScreen) {
+      platform.ready().then(() => {
+        // set up platform with our plugin
+        statusBar.styleDefault();
+        splashScreen.hide();
+      });
 
-    // used for an example of ngFor and navigation
-    this.pages = [
-      { title: 'Home', component: HomePage },
-      { title: 'List', component: ListPage }
-    ];
+
+    // this.initializeApp();
+
+    // // used for an example of ngFor and navigation
+    // this.pages = [
+    //   { title: 'Home', component: HomePage },
+    //   { title: 'List', component: ListPage }
+    // ];
 
   }
 
