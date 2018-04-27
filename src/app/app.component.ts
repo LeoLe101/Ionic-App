@@ -6,6 +6,11 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
 
+interface IPage {
+  title: string;
+  component: any;
+}
+
 @Component({
   templateUrl: 'app.html'
 })
@@ -14,7 +19,7 @@ export class MyApp {
 
   rootPage: any = HomePage;
 
-  pages: Array<{title: string, component: any}>;
+  pages: Array<IPage>;
 
   constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
     this.initializeApp();
@@ -27,7 +32,7 @@ export class MyApp {
 
   }
 
-  initializeApp() {
+  initializeApp(): void {
     this.platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
@@ -36,7 +41,7 @@ export class MyApp {
     });
   }
 
-  openPage(page) {
+  openPage(page: IPage): void {
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario
     this.nav.setRoot(page.component);
